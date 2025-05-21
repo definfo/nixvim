@@ -22,6 +22,10 @@
       # Treesitter folding.
       foldmethod = "expr";
       foldexpr = "nvim_treesitter#foldexpr()";
+      foldcolumn = "auto:9";
+      foldlevel = 99;
+      foldlevelstart = 99;
+      fillchars = "eob: ,fold: ,foldopen:,foldsep:│,foldclose:";
     };
 
     # Clipboard.
