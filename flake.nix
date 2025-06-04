@@ -5,7 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-cmp-dict.url = "github:NixOS/nixpkgs?rev=e5d1c87f5813afde2dda384ac807c57a105721cc";
     nixvim.url = "github:nix-community/nixvim";
-    wgsl-analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -44,7 +43,6 @@
             config.allowUnfree = true;
           };
           pkgs-cmp-dict = import inputs.nixpkgs-cmp-dict { inherit system; };
-          pkg-wgsl-analyzer = inputs.wgsl-analyzer.packages.${system}.default;
           nixvimModule = {
             inherit pkgs;
             module = import ./config; # import the module directly
@@ -54,7 +52,6 @@
                 system
                 pkgs-unfree
                 pkgs-cmp-dict
-                pkg-wgsl-analyzer
                 ;
               mylib = import ./lib { inherit (pkgs) lib; };
             };
@@ -78,18 +75,7 @@
               deadnix.enable = true;
               nixfmt.enable = true;
               statix.enable = true;
-              prettier = {
-                enable = true;
-                # Use Prettier 2.x for CJK pangu formatting
-                package = pkgs.nodePackages.prettier.override {
-                  version = "2.8.8";
-                  src = pkgs.fetchurl {
-                    url = "https://registry.npmjs.org/prettier/-/prettier-2.8.8.tgz";
-                    sha512 = "tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==";
-                  };
-                };
-                settings.editorconfig = true;
-              };
+              mdformat.enable = true;
             };
           };
 
@@ -99,7 +85,7 @@
             commitizen.enable = true;
             eclint.enable = true;
             editorconfig-checker.enable = true;
-            flake-checker.enable = true;
+            markdownlint.enable = true;
             treefmt.enable = true;
           };
 
@@ -108,6 +94,7 @@
               ${config.pre-commit.installationScript}
               echo 1>&2 "Welcome to the development shell!"
             '';
+            packages = config.pre-commit.settings.enabledPackages;
           };
         };
     };
