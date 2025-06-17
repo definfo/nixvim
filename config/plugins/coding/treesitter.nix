@@ -1,5 +1,4 @@
 {
-  # FIXME: cc executable
   plugins.treesitter = {
     enable = true;
     settings = {
