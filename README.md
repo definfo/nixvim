@@ -40,6 +40,7 @@ This configuration uses a variety of plugins to enhance the Neovim experience. H
 | neogen | A plugin to generate annotations and docstrings. |
 | nvim-autopairs | Inserts and deletes matching pairs of brackets, quotes, etc. |
 | todo-comments.nvim | Highlights and lists TODO, FIXME, NOTE, etc. comments. |
+| nvim-treesitter | Treesitter configurations and abstraction layer. |
 | trouble.nvim | A pretty diagnostics, references, telescope results, quickfix and location list. |
 | vim-suda | Allows editing files with sudo privileges. |
 
@@ -55,8 +56,6 @@ This configuration uses a variety of plugins to enhance the Neovim experience. H
 
 | Plugin | Description |
 | --------------------- | ------------------------------------------------------------------------ |
-| copilot.vim | GitHub Copilot plugin for Neovim. |
-| CopilotChat.nvim | Chat with GitHub Copilot. |
 | gitsigns.nvim | Git integration: signs for added, changed, and removed lines. |
 | lazygit.nvim | Plugin for fugitive.vim to bring up lazygit in a floating terminal. |
 | markdown-preview.nvim | Markdown preview in your browser. |
@@ -73,20 +72,6 @@ This configuration uses a variety of plugins to enhance the Neovim experience. H
 | mini.nvim (bufremove) | Part of the mini.nvim suite, provides buffer removal functionality. |
 | telescope.nvim | Highly extendable fuzzy finder over lists. |
 | which-key.nvim | Displays a popup with possible keybindings. |
-
-### Miscellaneous
-
-| Plugin | Description |
-| -------------------- | ----------------------------------------------------- |
-| codeforces-nvim | Neovim plugin for Codeforces competitive programming. |
-| codeforces-extractor | Extracts problem statements from Codeforces. |
-| nvim-luapad | Interactive real-time Lua scratchpad. |
-
-### Treesitter
-
-| Plugin | Description |
-| --------------- | ------------------------------------------------ |
-| nvim-treesitter | Treesitter configurations and abstraction layer. |
 
 ### Visuals & UI
 
