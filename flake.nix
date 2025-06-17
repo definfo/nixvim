@@ -75,6 +75,7 @@
               deadnix.enable = true;
               nixfmt.enable = true;
               statix.enable = true;
+              stylua.enable = true;
               mdformat.enable = true;
             };
           };
@@ -86,6 +87,7 @@
             eclint.enable = true;
             editorconfig-checker.enable = true;
             markdownlint.enable = true;
+            lua-ls.enable = true;
             treefmt.enable = true;
           };
 
