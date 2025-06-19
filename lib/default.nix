@@ -14,4 +14,9 @@
         ) (builtins.readDir path)
       )
     );
+
+  lazyUI = {
+    enable = true;
+    settings.event = "DeferredUIEnter";
+  };
 }

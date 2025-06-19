@@ -1,16 +1,29 @@
-{ pkgs, ... }:
-
 {
-  # TRigger all fold/unfold with `zR`/`zM`
-  # Trigger fold/unfold with `zr`/`zm`
-  extraPlugins = with pkgs.vimPlugins; [
-    nvim-ufo
-  ];
+  # NOTE: should not be lazyloaded
+  plugins.nvim-ufo = {
+    enable = true;
+    settings = {
+      # FIXME: https://github.com/kevinhwang91/nvim-ufo/issues/33
+      provider_selector = ''
+        function(bufnr, filetype, buftype)
+            local ftMap = {
+                vim = "indent",
+                python = { "indent" },
+                git = "",
+            }
+            return ftMap[filetype] or {'treesitter', 'indent'}
+        end
+      '';
+    };
+  };
+
   extraConfigLua = ''
-    require('ufo').setup({
-      provider_selector = function(bufnr, filetype, buftype)
-        return {'treesitter', 'indent'}
-      end
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "nvcheatsheet", "neo-tree" },
+        callback = function()
+            require("ufo").detach()
+            vim.opt_local.foldenable = false
+        end
     })
   '';
 }

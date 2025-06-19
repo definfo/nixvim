@@ -1,7 +1,7 @@
-{ pkgs, ... }:
 {
-  extraPlugins = with pkgs.vimPlugins; [
-    dressing-nvim
-  ];
-  extraConfigLua = builtins.readFile ./dressing.lua;
+  # TODO: snacks.nvim for `vim.ui.input`
+  plugins.dressing = {
+    enable = true;
+    luaConfig.content = builtins.readFile ./dressing.lua;
+  };
 }

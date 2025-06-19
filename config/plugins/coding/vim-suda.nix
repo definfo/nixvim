@@ -1,7 +1,7 @@
-{ pkgs, ... }:
-
 {
-  extraPlugins = with pkgs.vimPlugins; [
-    vim-suda
-  ];
+  plugins.vim-suda = {
+    enable = true;
+    # :setglobal suda#smart_edit=1
+    settings.smart_edit = 1;
+  };
 }

@@ -12,97 +12,133 @@ Clone this repo and run the following command:
 nix run .
 ```
 
+## LSPs
+
+General:
+
+| LSP      | Description                                                                        |
+| -------- | ---------------------------------------------------------------------------------- |
+| ast-grep | Fast and polyglot tool for code structural search, lint, rewriting at large scale. |
+| asm-lsp  | LSP for assembly languages.                                                        |
+
+Python:
+
+| LSP          | Description                                         |
+| ------------ | --------------------------------------------------- |
+| basedpyright | A type checker for Python, based on Pyright.        |
+| ruff         | An extremely fast Python linter and code formatter. |
+
+Haskell:
+
+| LSP                     | Description                                 |
+| ----------------------- | ------------------------------------------- |
+| haskell-language-server | A language server for the Haskell language. |
+
+Markdown:
+
+| LSP            | Description                         |
+| -------------- | ----------------------------------- |
+| markdown_oxide | A Markdown language server in Rust. |
+
+Nix:
+
+| LSP    | Description                                  |
+| ------ | -------------------------------------------- |
+| statix | A linter and formatter for the Nix language. |
+| nixd   | A language server for Nix.                   |
+
+Typst:
+
+| LSP      | Description                               |
+| -------- | ----------------------------------------- |
+| tinymist | A language server for the Typst language. |
+
 ## Plugins
 
-This configuration uses a variety of plugins to enhance the Neovim experience. Here's a categorized list:
+This configuration uses a variety of plugins to enhance the Neovim experience.
+Here's a categorized list:
 
 ### Completion
 
-| Plugin | Description |
+| Plugin            | Description                                                          |
 | ----------------- | -------------------------------------------------------------------- |
-| nvim-cmp | Autocompletion plugin for Neovim. |
-| cmp-dictionary | nvim-cmp source for dictionary words. |
-| cmp-nvim-lsp | nvim-cmp source for LSP client. |
-| cmp_luasnip | nvim-cmp source for LuaSnip. |
-| cmp-path | nvim-cmp source for file system paths. |
-| cmp-latex-symbols | nvim-cmp source for LaTeX symbols. |
-| LuaSnip | Snippet engine for Neovim written in Lua. |
+| blink-cmp         | Autocompletion plugin for Neovim.                                    |
+| LuaSnip           | Snippet engine for Neovim written in Lua.                            |
 | friendly-snippets | A set of preconfigured snippets for different programming languages. |
-| lazydev.nvim | Faster LuaLS setup for Neovim. |
+| lazydev.nvim      | Faster LuaLS setup for Neovim.                                       |
 
 ### Coding Utilities
 
-| Plugin | Description |
+| Plugin               | Description                                                                      |
 | -------------------- | -------------------------------------------------------------------------------- |
-| Comment.nvim | Smart commenting plugin that supports various comment styles. |
-| comment-divider.nvim | Plugin to create noticeable comment dividers. |
-| neoformat | A generic formatter plugin for Neovim. |
-| neogen | A plugin to generate annotations and docstrings. |
-| nvim-autopairs | Inserts and deletes matching pairs of brackets, quotes, etc. |
-| todo-comments.nvim | Highlights and lists TODO, FIXME, NOTE, etc. comments. |
-| nvim-treesitter | Treesitter configurations and abstraction layer. |
-| trouble.nvim | A pretty diagnostics, references, telescope results, quickfix and location list. |
-| vim-suda | Allows editing files with sudo privileges. |
-
-### Debugging (DAP)
-
-| Plugin | Description |
-| ----------- | --------------------------------------------- |
-| nvim-dap | Debug Adapter Protocol client implementation. |
-| nvim-dap-go | Extension for nvim-dap to debug Go programs. |
-| nvim-dap-ui | A UI for nvim-dap. |
+| Comment.nvim         | Smart commenting plugin that supports various comment styles.                    |
+| comment-divider.nvim | Plugin to create noticeable comment dividers.                                    |
+| neogen               | A plugin to generate annotations and docstrings.                                 |
+| nvim-autopairs       | Inserts and deletes matching pairs of brackets, quotes, etc.                     |
+| todo-comments.nvim   | Highlights and lists TODO, FIXME, NOTE, etc. comments.                           |
+| nvim-treesitter      | Treesitter configurations and abstraction layer.                                 |
+| trouble.nvim         | A pretty diagnostics, references, telescope results, quickfix and location list. |
+| vim-suda             | Allows editing files with sudo privileges.                                       |
 
 ### Editor Enhancements
 
-| Plugin | Description |
-| --------------------- | ------------------------------------------------------------------------ |
-| gitsigns.nvim | Git integration: signs for added, changed, and removed lines. |
-| lazygit.nvim | Plugin for fugitive.vim to bring up lazygit in a floating terminal. |
-| markdown-preview.nvim | Markdown preview in your browser. |
-| neo-tree.nvim | A file explorer tree. |
-| nvim-ufo | An ultra fold in Neovim. |
-| toggleterm.nvim | A Neovim plugin to persist and toggle multiple terminals during editing. |
+| Plugin               | Description                                                              |
+| -------------------- | ------------------------------------------------------------------------ |
+| gitsigns.nvim        | Git integration: signs for added, changed, and removed lines.            |
+| lazygit.nvim         | Plugin for fugitive.vim to bring up lazygit in a floating terminal.      |
+| render-markdown.nvim | Plugin to improve viewing Markdown files in Neovim.                      |
+| neo-tree.nvim        | A file explorer tree.                                                    |
+| nvim-ufo             | An ultra fold in Neovim.                                                 |
+| toggleterm.nvim      | A Neovim plugin to persist and toggle multiple terminals during editing. |
 
 ### Core Infrastructure
 
-| Plugin | Description |
+| Plugin                | Description                                                         |
 | --------------------- | ------------------------------------------------------------------- |
-| nvim-config-local | Load local configuration files. |
-| flash.nvim | Enhanced jump motions for Neovim. |
+| nvim-config-local     | Load local configuration files.                                     |
+| flash.nvim            | Enhanced jump motions for Neovim.                                   |
 | mini.nvim (bufremove) | Part of the mini.nvim suite, provides buffer removal functionality. |
-| telescope.nvim | Highly extendable fuzzy finder over lists. |
-| which-key.nvim | Displays a popup with possible keybindings. |
+| telescope.nvim        | Highly extendable fuzzy finder over lists.                          |
+| which-key.nvim        | Displays a popup with possible keybindings.                         |
 
 ### Visuals & UI
 
-| Plugin | Description |
+| Plugin           | Description                                                           |
 | ---------------- | --------------------------------------------------------------------- |
-| bufferline.nvim | A snazzy buffer line for Neovim. |
-| dressing.nvim | Improves the default vim.ui interfaces. |
-| lualine.nvim | A blazing fast and easy to configure Neovim statusline. |
-| noice.nvim | Replaces the UI for messages, cmdline and the popupmenu. |
-| nvim-notify | A notification manager for Neovim. |
+| bufferline.nvim  | A snazzy buffer line for Neovim.                                      |
+| dressing.nvim    | Improves the default vim.ui interfaces.                               |
+| lualine.nvim     | A blazing fast and easy to configure Neovim statusline.               |
+| noice.nvim       | Replaces the UI for messages, cmdline and the popupmenu.              |
+| nvim-notify      | A notification manager for Neovim.                                    |
 | virt-column.nvim | Displays a virtual column (e.g., for colorcolumn) without text shift. |
 
 ## Get started
 
-**NOTE:** This project is pre-configured with nix-direnv, as well as Nixd support for VSCode.
+**NOTE:** This project is pre-configured with nix-direnv, as well as Nixd
+support for VSCode.
 
-Prerequisites: Make sure to also have [direnv](https://direnv.net) and [nixd](https://github.com/nix-community/nixd) installed.
+Prerequisites: Make sure to also have [direnv](https://direnv.net) and
+[nixd](https://github.com/nix-community/nixd) installed.
 
-```shell
+```bash
 # Enable devshell
 direnv allow
 
 # Build nixvim under `./result`
 nix build
+
 # Run nixvim directly
 nix run
+
 # Install nixvim via `nix profile`
 nix profile install
+
 # You may also include this flake in system configuration
 # e.g. inputs.nixvim.url = "github:definfo/nixvim";
-# consider using `inputs.nixvim.inputs.nixpkgs.follows = "nixpkgs"` to follow existing nixpkgs
+# You may add
+# inputs.nixvim.inputs.nixpkgs.follows = "nixpkgs";
+# to reuse existing nixpkgs.
+# However this may lead to incompatibilities.
 
 # Run treefmt to format the project
 nix fmt
@@ -110,7 +146,9 @@ nix fmt
 # Run checks
 nix flake check
 
-# NOTE: pre-commit-hook automatically runs before `git commit`
+# NOTE:
+# pre-commit-hook automatically runs before `git commit`
+# See details with
 pre-commit --all-files --verbose
 ```
 
@@ -120,9 +158,9 @@ To enable completion for NixVim options in VSCode:
 
 1. Install `Nix IDE` VSCode extension,
 
-1. Follow the instructions in `.vscode/settings.json.bak`,
+2. Follow the instructions in `.vscode/settings.json.bak`,
 
-1. Rename it to `.vscode/settings.json`.
+3. Rename it to `.vscode/settings.json`.
 
    Enjoy completion!
 

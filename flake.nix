@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-cmp-dict.url = "github:NixOS/nixpkgs?rev=e5d1c87f5813afde2dda384ac807c57a105721cc";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -42,7 +41,6 @@
             inherit system;
             config.allowUnfree = true;
           };
-          pkgs-cmp-dict = import inputs.nixpkgs-cmp-dict { inherit system; };
           nixvimModule = {
             inherit pkgs;
             module = import ./config; # import the module directly
@@ -51,7 +49,6 @@
               inherit
                 system
                 pkgs-unfree
-                pkgs-cmp-dict
                 ;
               mylib = import ./lib { inherit (pkgs) lib; };
             };
@@ -73,10 +70,10 @@
             projectRootFile = ".git/config";
             programs = {
               deadnix.enable = true;
+              deno.enable = true;
               nixfmt.enable = true;
               statix.enable = true;
               stylua.enable = true;
-              mdformat.enable = true;
             };
           };
 

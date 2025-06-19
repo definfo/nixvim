@@ -1,18 +1,11 @@
 {
   plugins.neogen = {
     enable = true;
+    # TODO
+    languages = {
+      python = {
+        template.annotation_convention = "reST";
+      };
+    };
   };
-
-  extraConfigLua = ''
-    require("neogen").setup {
-      enabled = true,
-      languages = {
-        python = {
-          template = {
-            annotation_convention = "reST"
-          }
-        },
-      }
-    }
-  '';
 }

@@ -6,7 +6,7 @@ let
       owner = "fangjunzhou";
       repo = "comment-divider.nvim";
       rev = "v0.2.0";
-      sha256 = "sha256-znj5rOYotbQ7wYpEz7aPMjY37nT2+QIM9/w+K3qiaxk=";
+      hash = "sha256-znj5rOYotbQ7wYpEz7aPMjY37nT2+QIM9/w+K3qiaxk=";
     };
   };
 in

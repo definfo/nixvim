@@ -1,4 +1,4 @@
-{ helpers, ... }:
+_:
 
 {
   plugins.neo-tree = {
@@ -28,18 +28,4 @@
     window.mappings."s" = "";
     window.mappings."<space>" = "";
   };
-  keymaps = [
-    {
-      mode = [ "n" ];
-      key = "<leader>e";
-      action = helpers.mkRaw ''
-        function()
-          require("neo-tree.command").execute({ toggle = true })
-        end
-      '';
-      options = {
-        desc = "Toggle Neo-Tree";
-      };
-    }
-  ];
 }

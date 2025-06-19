@@ -1,16 +1,7 @@
+{ mylib, ... }:
 {
   plugins.toggleterm = {
     enable = true;
+    lazyLoad = mylib.lazyUI;
   };
-
-  keymaps = [
-    {
-      mode = [ "n" ];
-      key = "<c-\\>";
-      action = "<cmd>ToggleTerm<cr>";
-      options = {
-        desc = "Toggle Terminal";
-      };
-    }
-  ];
 }

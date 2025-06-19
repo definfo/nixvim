@@ -1,7 +1,3 @@
-{ pkgs, ... }:
-
 {
-  extraPlugins = with pkgs.vimPlugins; [
-    friendly-snippets
-  ];
+  plugins.friendly-snippets.enable = true;
 }

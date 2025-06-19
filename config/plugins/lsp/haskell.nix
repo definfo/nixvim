@@ -1,5 +1,5 @@
 {
-  plugins.lazygit = {
+  lsp.servers.hls = {
     enable = true;
   };
 }
