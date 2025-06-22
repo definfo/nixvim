@@ -3,6 +3,9 @@ _:
 {
   plugins.neo-tree = {
     enable = true;
+    closeIfLastWindow = true;
+    popupBorderStyle = "none";
+    # Collapse folder
     window.mappings."h".__raw = ''
       function(state)
         local node = state.tree:get_node()
@@ -13,6 +16,7 @@ _:
         end
       end
     '';
+    # Expand folder
     window.mappings."l".__raw = ''
       function(state)
         local node = state.tree:get_node()

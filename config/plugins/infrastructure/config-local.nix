@@ -6,7 +6,7 @@
   ];
 
   extraConfigLua = ''
-    require('config-local').setup {
+    require("config-local").setup {
       -- Default options (optional)
 
       -- Config file patterns to load (lua supported)

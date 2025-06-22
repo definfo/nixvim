@@ -38,10 +38,11 @@
       # Search case sensitivity.
       ic = true;
       # Fold settings, see nvim-ufo for details.
-      foldcolumn = "auto:9";
+      foldenable = true;
+      foldcolumn = "1";
       foldlevel = 99;
       foldlevelstart = 99;
-      fillchars = "eob: ,fold: ,foldopen:,foldsep:│,foldclose:";
+      fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:";
     };
 
     # Clipboard.

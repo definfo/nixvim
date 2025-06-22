@@ -16,42 +16,13 @@ nix run .
 
 General:
 
-| LSP      | Description                                                                        |
-| -------- | ---------------------------------------------------------------------------------- |
-| ast-grep | Fast and polyglot tool for code structural search, lint, rewriting at large scale. |
-| asm-lsp  | LSP for assembly languages.                                                        |
-
-Python:
-
-| LSP          | Description                                         |
-| ------------ | --------------------------------------------------- |
-| basedpyright | A type checker for Python, based on Pyright.        |
-| ruff         | An extremely fast Python linter and code formatter. |
-
-Haskell:
-
-| LSP                     | Description                                 |
-| ----------------------- | ------------------------------------------- |
-| haskell-language-server | A language server for the Haskell language. |
-
-Markdown:
-
-| LSP            | Description                         |
-| -------------- | ----------------------------------- |
-| markdown_oxide | A Markdown language server in Rust. |
-
-Nix:
-
-| LSP    | Description                                  |
-| ------ | -------------------------------------------- |
-| statix | A linter and formatter for the Nix language. |
-| nixd   | A language server for Nix.                   |
-
-Typst:
-
-| LSP      | Description                               |
-| -------- | ----------------------------------------- |
-| tinymist | A language server for the Typst language. |
+| LSP            | Description                                                                        |
+| -------------- | ---------------------------------------------------------------------------------- |
+| ast-grep       | Fast and polyglot tool for code structural search, lint, rewriting at large scale. |
+| asm-lsp        | LSP for assembly languages.                                                        |
+| bashls         | LSP for Bash scripts.                                                              |
+| markdown_oxide | A Markdown language server in Rust.                                                |
+| tinymist       | A language server for the Typst language.                                          |
 
 ## Plugins
 
