@@ -3,9 +3,17 @@
     # Core plugins
     plugins = {
       lz-n.enable = true;
-      auto-save.enable = true;
       auto-session.enable = true;
     };
+
+    extraConfigLua = ''
+      require("auto-session").setup {
+          log_level = "error",
+          auto_session_suppress_dirs = { "~/", "~/projects", "~/Downloads", "/" },
+          pre_save_cmds = {"tabdo Neotree close"},
+          post_restore_cmds = {"Neotree"}
+      }
+    '';
 
     # Color scheme
     colorscheme = "catppuccin";
@@ -43,6 +51,8 @@
       foldlevel = 99;
       foldlevelstart = 99;
       fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:";
+      # Session settings
+      sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions";
     };
 
     # Clipboard.
