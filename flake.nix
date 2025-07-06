@@ -74,6 +74,7 @@
               nixfmt.enable = true;
               statix.enable = true;
               stylua.enable = true;
+              zizmor.enable = true;
             };
           };
 

@@ -3,26 +3,25 @@ name: Update flake.lock weekly
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
-    # runs weekly on Sunday 00:00 UTC
-    - cron: "0 0 * * 0"
+    - cron: "0 6 * * 0" # runs weekly on Sunday 06:00 UTC
 
 jobs:
   update-flake-lock:
-    permissions:
-      contents: write
-      id-token: write
-      issues: write
-      pull-requests: write
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Install Nix
-        uses: nixbuild/nix-quick-install-action@v30
-      - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@v25
         with:
-          pr-title: "chore: update flake.lock"
+          persist-credentials: false
+      - name: Install Nix
+        uses: nixbuild/nix-quick-install-action@63ca48f939ee3b8d835f4126562537df0fee5b91 # v32
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@428c2b58a4b7414dabd372acb6a03dba1084d3ab # v25
+        with:
+          pr-title: "bump: update flake.lock"
           pr-labels: |
             dependencies
             auto-merge
