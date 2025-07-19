@@ -70,7 +70,6 @@
             projectRootFile = ".git/config";
             programs = {
               deadnix.enable = true;
-              deno.enable = true;
               nixfmt.enable = true;
               statix.enable = true;
               stylua.enable = true;
@@ -90,11 +89,13 @@
           };
 
           devShells.default = pkgs.mkShell {
+            inputsFrom = [
+              config.treefmt.build.devShell
+              config.pre-commit.devShell
+            ];
             shellHook = ''
-              ${config.pre-commit.installationScript}
               echo 1>&2 "Welcome to the development shell!"
             '';
-            packages = config.pre-commit.settings.enabledPackages;
           };
         };
     };
