@@ -1,4 +1,3 @@
-// Fill in $PWD and $SYSTEM before usage
 {
   "nix.serverPath": "nixd",
   "nix.enableLanguageServer": true,
@@ -6,7 +5,7 @@
     "nixd": {
       "nixpkgs": {
         // For flake.
-        "expr": "import (builtins.getFlake \"$PWD\").inputs.nixpkgs { }   "
+        "expr": "import (builtins.getFlake (\"git+file://\" + builtins.toString ./.)).inputs.nixpkgs { }   "
         // This expression will be interpreted as "nixpkgs" toplevel
         // Nixd provides package, lib completion/information from it.
         ///
@@ -26,7 +25,7 @@
         "nixvim": {
           // This name "nixos" could be arbitrary.
           // The expression to eval, interpret it as option declarations.
-          "expr": "(builtins.getFlake \"$PWD\").inputs.nixvim.nixvimConfigurations.$SYSTEM.default.options"
+          "expr": "(builtins.getFlake (\"git+file://\" + builtins.toString ./.)).inputs.nixvim.nixvimConfigurations.x86_64-linux.default.options"
         }
       },
       // Control the diagnostic system

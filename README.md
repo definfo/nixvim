@@ -125,15 +125,9 @@ pre-commit --all-files --verbose
 
 ### Optional steps for NixVim completion
 
-To enable completion for NixVim options in VSCode:
+This project provides pre-configured Nix completion for VSCode/Zed/Neovim.
 
-1. Install `Nix IDE` VSCode extension,
-
-2. Follow the instructions in `.vscode/settings.json.bak`,
-
-3. Rename it to `.vscode/settings.json`.
-
-   Enjoy completion!
+Enjoy completion!
 
 ## Contributing
 

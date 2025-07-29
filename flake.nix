@@ -8,12 +8,22 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { nixvim, flake-parts, ... }@inputs:
+    {
+      nixvim,
+      flake-parts,
+      ...
+    }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.treefmt-nix.flakeModule
@@ -35,25 +45,19 @@
           ...
         }:
         let
+          extraSpecialArgs = {
+            inherit system;
+            mylib = import ./lib { inherit (pkgs) lib; };
+          };
+
           nixvimLib = nixvim.lib.${system};
           nixvim' = nixvim.legacyPackages.${system};
-          pkgs-unfree = import inputs.nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
           nixvimModule = {
-            inherit pkgs;
-            module = import ./config; # import the module directly
             # You can use `extraSpecialArgs` to pass additional arguments to your module files
-            extraSpecialArgs = {
-              inherit
-                system
-                pkgs-unfree
-                ;
-              mylib = import ./lib { inherit (pkgs) lib; };
-            };
+            inherit pkgs extraSpecialArgs;
+            module = import ./config; # import the module directly
           };
-          nvim = nixvim'.makeNixvimWithModule nixvimModule;
+          nixvim-nvim = nixvim'.makeNixvimWithModule nixvimModule;
         in
         {
           checks = {
@@ -62,17 +66,25 @@
           };
 
           # Lets you run `nix run .` to start nixvim
-          packages.default = nvim;
+          packages.default = nixvim-nvim;
 
           # https://flake.parts/options/treefmt-nix.html
           # Example: https://github.com/nix-community/buildbot-nix/blob/main/nix/treefmt/flake-module.nix
           treefmt = {
-            projectRootFile = ".git/config";
+            projectRootFile = "flake.nix";
             programs = {
+              autocorrect.enable = true;
               deadnix.enable = true;
+              formatjson5.enable = true;
               nixfmt.enable = true;
               statix.enable = true;
-              stylua.enable = true;
+              stylua = {
+                enable = true;
+                settings = {
+                  indent_type = "Spaces";
+                  indent_width = 4;
+                };
+              };
               zizmor.enable = true;
             };
           };

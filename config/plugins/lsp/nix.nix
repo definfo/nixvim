@@ -1,11 +1,7 @@
-{
+_: {
   lsp.servers = {
     # TODO: deadnix
-    nixd = {
-      enable = true;
-    };
-    statix = {
-      enable = true;
-    };
+    nixd.enable = true;
+    statix.enable = true;
   };
 }

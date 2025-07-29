@@ -88,7 +88,6 @@ in
           "path"
           "snippets"
           "buffer"
-          "dictionary"
           "ripgrep"
           "latex"
         ];
@@ -98,14 +97,6 @@ in
           };
           lsp = {
             fallbacks = [ ];
-          };
-          dictionary = {
-            module = "blink-cmp-dictionary";
-            name = "Dict";
-            # score_offset = 3;
-            min_keyword_length = 3;
-            # Optional configurations
-            opts = { };
           };
           ripgrep = {
             async = true;
@@ -147,14 +138,8 @@ in
       };
     };
     blink-compat.enable = true;
-    blink-cmp-dictionary.enable = true;
     blink-ripgrep.enable = true;
   };
-
-  extraPython3Packages =
-    p: with p; [
-      wn # WordNet, used by blink-cmp-dictionary.get_documentation()
-    ];
 
   extraPlugins = [
     blink-cmp-latex

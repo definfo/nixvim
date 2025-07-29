@@ -8,7 +8,7 @@
       "settings": {
         "nixpkgs": {
           // For flake.
-          "expr": "import (builtins.getFlake \"/home/definfo/Develop/nixvim\").inputs.nixpkgs { }   "
+          "expr": "import (builtins.getFlake (\"git+file://\" + builtins.toString ./.)).inputs.nixpkgs { }"
           // This expression will be interpreted as "nixpkgs" toplevel
           // Nixd provides package, lib completion/information from it.
           ///
@@ -24,7 +24,7 @@
         // This is lazily evaluated.
         "options": {
           "nixvim": {
-            "expr": "(builtins.getFlake \"/home/definfo/Develop/nixvim\").inputs.nixvim.nixvimConfigurations.x86_64-linux.default.options"
+            "expr": "(builtins.getFlake (\"git+file://\" + builtins.toString ./.)).inputs.nixvim.nixvimConfigurations.x86_64-linux.default.options"
           }
         },
         // Control the diagnostic system
