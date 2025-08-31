@@ -12,7 +12,6 @@
     bashls.enable = true;
     lua_ls.enable = true;
     neocmake.enable = true;
-    systemd_ls.enable = true;
     yamlls.enable = true;
   };
 }

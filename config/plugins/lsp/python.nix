@@ -4,6 +4,9 @@ _: {
       enable = true;
       package = null;
     };
-    basedpyright.enable = true;
+    basedpyright = {
+      enable = true;
+      package = null;
+    };
   };
 }
