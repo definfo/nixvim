@@ -1,4 +1,4 @@
-{
+{ lib, system, ... }: {
   config = {
     # Core plugins
     plugins = {
@@ -56,7 +56,7 @@
     };
 
     # Clipboard.
-    clipboard = {
+    clipboard = lib.mkIf (builtins.elem system lib.platforms.linux) {
       register = "unnamedplus";
       providers.wl-copy.enable = true;
     };
