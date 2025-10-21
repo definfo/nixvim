@@ -251,19 +251,6 @@
           desc = "Find Files";
         };
       }
-      # Neo-tree
-      {
-        mode = [ "n" ];
-        key = "<leader>e";
-        action = helpers.mkRaw ''
-          function()
-            require("neo-tree.command").execute({ toggle = true })
-          end
-        '';
-        options = {
-          desc = "Toggle Neo-Tree";
-        };
-      }
       # Toggle Terminal
       {
         mode = [ "n" ];

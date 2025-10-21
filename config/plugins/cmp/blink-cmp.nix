@@ -103,14 +103,20 @@ in
             module = "blink-ripgrep";
             name = "Ripgrep";
             opts = {
-              backend.context_size = 5;
-              backend.ripgrep.max_filesize = "1M";
-              backend.ripgrep.project_root_fallback = true;
-              backend.ripgrep.search_casing = "--ignore-case";
-              prefix_min_len = 3;
+              prefix_min_len = 4;
               project_root_marker = ".git";
-              additional_rg_options = { };
               fallback_to_regex_highlighting = true;
+              backend = {
+                use = "gitgrep-or-ripgrep";
+                customize_icon_highlight = true;
+                ripgrep = {
+                  context_size = 5;
+                  max_filesize = "1M";
+                  project_root_fallback = true;
+                  search_casing = "--smart-case";
+                };
+              };
+              additional_rg_options = { };
               ignore_paths = { };
               additional_paths = { };
               debug = false;

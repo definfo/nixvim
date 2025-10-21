@@ -7,8 +7,8 @@
     enable = true;
     lazyLoad = mylib.lazyUI;
   };
-  plugins.markview = {
-    enable = true;
-    lazyLoad = mylib.lazyUI;
-  };
+  # plugins.markview = {
+  #   enable = true;
+  #   lazyLoad = mylib.lazyUI;
+  # };
 }

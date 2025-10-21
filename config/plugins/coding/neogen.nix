@@ -2,7 +2,7 @@
   plugins.neogen = {
     enable = true;
     # TODO
-    languages = {
+    settings.languages = {
       python = {
         template.annotation_convention = "reST";
       };
