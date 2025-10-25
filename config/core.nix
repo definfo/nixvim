@@ -1,4 +1,10 @@
-{ lib, system, ... }: {
+{
+  pkgs,
+  lib,
+  system,
+  ...
+}:
+{
   config = {
     # Core plugins
     plugins = {
@@ -26,12 +32,19 @@
     # Deps
     dependencies = {
       coreutils.enable = true;
-      # cornelis.enable = true; # agda-mode
+      cornelis.enable = true; # agda-mode
       direnv.enable = true;
       fzf.enable = true;
-      git.enable = true;
+      git = {
+        enable = true;
+        package = pkgs.gitMinimal;
+      };
       ripgrep.enable = true;
     };
+
+    # NOTE: corenelis (agda-mode for neovim) should depend on global binaries
+    # let g:cornelis_use_global_binary = 1 / vim.g.cornelis_use_global_binary = 1
+    globals.cornelis_use_global_binary = 1;
 
     # Options.
     opts = {
