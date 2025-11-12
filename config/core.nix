@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  system,
   ...
 }:
 {
@@ -9,17 +8,7 @@
     # Core plugins
     plugins = {
       lz-n.enable = true;
-      auto-session.enable = true;
     };
-
-    extraConfigLua = ''
-      require("auto-session").setup {
-          log_level = "error",
-          auto_session_suppress_dirs = { "~/", "~/projects", "~/Downloads", "/" },
-          pre_save_cmds = {"tabdo Neotree close"},
-          post_restore_cmds = {"Neotree"}
-      }
-    '';
 
     # Color scheme
     colorscheme = "catppuccin";
@@ -31,8 +20,8 @@
 
     # Deps
     dependencies = {
-      coreutils.enable = true;
-      cornelis.enable = true; # agda-mode
+      # coreutils.enable = true;
+      # cornelis.enable = true; # agda-mode
       direnv.enable = true;
       fzf.enable = true;
       git = {
@@ -44,7 +33,7 @@
 
     # NOTE: corenelis (agda-mode for neovim) should depend on global binaries
     # let g:cornelis_use_global_binary = 1 / vim.g.cornelis_use_global_binary = 1
-    globals.cornelis_use_global_binary = 1;
+    # globals.cornelis_use_global_binary = 1;
 
     # Options.
     opts = {
@@ -69,15 +58,15 @@
     };
 
     # Clipboard.
-    clipboard = lib.mkIf (builtins.elem system lib.platforms.linux) {
+    clipboard = lib.mkIf pkgs.stdenv.isLinux {
       register = "unnamedplus";
       providers.wl-copy.enable = true;
     };
 
     # Filetypes.
-    filetype.extension = {
-      "slang" = "slang";
-    };
+    # filetype.extension = {
+    #   "slang" = "slang";
+    # };
 
     # NOTE: Experimental
     performance.combinePlugins.enable = true;

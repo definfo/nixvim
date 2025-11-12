@@ -70,7 +70,10 @@
           };
 
           # Lets you run `nix run .` to start nixvim
-          packages.default = nixvim-nvim;
+          packages = {
+            default = nixvim-nvim;
+            neovim = nixvim-nvim;
+          };
 
           # https://flake.parts/options/treefmt-nix.html
           # Example: https://github.com/nix-community/buildbot-nix/blob/main/nix/treefmt/flake-module.nix
@@ -79,7 +82,6 @@
             programs = {
               autocorrect.enable = true;
               deadnix.enable = true;
-              formatjson5.enable = true;
               nixfmt.enable = true;
               statix.enable = true;
               stylua = {
@@ -95,9 +97,10 @@
 
           # https://flake.parts/options/git-hooks-nix.html
           # Example: https://github.com/cachix/git-hooks.nix/blob/master/template/flake.nix
+          pre-commit.settings.configPath = ".pre-commit-config.flake.yaml";
+          pre-commit.settings.package = pkgs.prek;
           pre-commit.settings.hooks = {
             eclint.enable = true;
-            editorconfig-checker.enable = true;
             markdownlint.enable = true;
             lua-ls.enable = true;
             treefmt.enable = true;

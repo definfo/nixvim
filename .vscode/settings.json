@@ -33,5 +33,6 @@
         "suppress": ["sema-extra-with"]
       }
     }
-  }
+  },
+  "stylua.targetReleaseVersion": "latest"
 }

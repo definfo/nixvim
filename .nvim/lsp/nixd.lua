@@ -1,10 +1,9 @@
-local nvim_lsp = require("lspconfig")
-nvim_lsp.nixd.setup({
+vim.lsp.config("nixd", {
     cmd = { "nixd" },
     settings = {
         nixd = {
             nixpkgs = {
-                expr = "import <nixpkgs> { }",
+                expr = 'import (builtins.getFlake ("git+file://" + builtins.toString ./.)).inputs.nixpkgs { }',
             },
             formatting = {
                 command = { "nixfmt" },

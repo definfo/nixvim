@@ -132,3 +132,8 @@ Enjoy completion!
 ## Contributing
 
 Issues / PRs are welcomed :)
+
+## NOTE
+
+The `require('lspconfig')` "framework" is deprecated, use vim.lsp.config (see :help lspconfig-nvim-0.11) instead.
+Feature will be removed in nvim-lspconfig v3.0.0
