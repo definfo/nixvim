@@ -15,7 +15,9 @@
       },
       "formatting": {
         // Which command you would like to do formatting
-        "command": ["nixfmt"]
+        "command": [
+          "nixfmt"
+        ]
       },
       // Tell the language server your desired option set, for completion
       // This is lazily evaluated.
@@ -30,9 +32,10 @@
       },
       // Control the diagnostic system
       "diagnostic": {
-        "suppress": ["sema-extra-with"]
+        "suppress": [
+          "sema-extra-with"
+        ]
       }
     }
   },
-  "stylua.targetReleaseVersion": "latest"
 }

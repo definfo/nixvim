@@ -137,3 +137,5 @@ Issues / PRs are welcomed :)
 
 The `require('lspconfig')` "framework" is deprecated, use vim.lsp.config (see :help lspconfig-nvim-0.11) instead.
 Feature will be removed in nvim-lspconfig v3.0.0
+
+trace: evaluation warning: Nixvim (plugins.friendly-snippets): When using performance.combinePlugins.enable, plugins.friendly-snippets.enable and plugins.luasnip.enable, plugins.blink-cmp.enable: "friendly-snippets" has to be added to performance.combinePlugins.standalonePlugins in order to be picked up by the aforementioned plugins.

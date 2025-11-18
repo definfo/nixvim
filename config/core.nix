@@ -69,6 +69,9 @@
     # };
 
     # NOTE: Experimental
-    performance.combinePlugins.enable = true;
+    performance.combinePlugins = {
+      enable = true;
+      standalonePlugins = [ "friendly-snippets" ];
+    };
   };
 }
