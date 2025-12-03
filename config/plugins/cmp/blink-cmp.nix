@@ -1,153 +1,135 @@
-{ pkgs, helpers, ... }:
-let
-  blink-cmp-latex = pkgs.vimUtils.buildVimPlugin {
-    name = "blink-cmp-latex";
-    src = pkgs.fetchFromGitHub {
-      owner = "erooke";
-      repo = "blink-cmp-latex";
-      rev = "325fe0b3e652c87be880894cd1c14d886f1fec8e";
-      hash = "sha256-mkgE+545rQL6dUdBOxSuDva7eGUQL8PU5Z7mKc7FMTQ=";
-    };
-  };
-in
+{ lib, ... }:
 {
-  plugins = {
-    blink-cmp = {
-      enable = true;
-      settings.completion = {
-        accept = {
-          auto_brackets.enabled = true;
-        };
-        documentation = {
-          auto_show = true;
-        };
+  plugins.blink-cmp = {
+    enable = true;
+    settings.enabled = lib.nixvim.mkRaw ''
+      function()
+        return not vim.tbl_contains({ "lua", "markdown" }, vim.bo.filetype)
+          and vim.bo.buftype ~= "prompt"
+          and vim.b.completion ~= false
+      end
+    '';
+    settings.completion = {
+      accept = {
+        auto_brackets.enabled = false;
       };
-      settings.signature = {
-        enabled = true;
-      };
-      settings.keymap = {
-        "<C-space>" = [
-          "show"
-          "show_documentation"
-          "hide_documentation"
-        ];
-        "<C-e>" = [
-          "cancel"
-          "fallback"
-        ];
-        "<Tab>" = [
-          (helpers.mkRaw ''
-            function(cmp)
-              if cmp.snippet_active() then
-                return cmp.accept()
-              else
-                return cmp.select_and_accept()
-              end
-            end
-          '')
-          "snippet_forward"
-          "fallback"
-        ];
-        "<S-Tab>" = [
-          "snippet_backward"
-          "fallback"
-        ];
-        "<Up>" = [
-          "select_prev"
-          "fallback"
-        ];
-        "<Down>" = [
-          "select_next"
-          "fallback"
-        ];
-        "<C-p>" = [
-          "select_prev"
-          "fallback_to_mappings"
-        ];
-        "<C-n>" = [
-          "select_next"
-          "fallback_to_mappings"
-        ];
-        "<C-b>" = [
-          "scroll_documentation_up"
-          "fallback"
-        ];
-        "<C-f>" = [
-          "scroll_documentation_down"
-          "fallback"
-        ];
-        "<C-k>" = [
-          "show_signature"
-          "hide_signature"
-          "fallback"
-        ];
-      };
-      settings.sources = {
-        default = [
-          "lsp"
-          "path"
-          "snippets"
-          "buffer"
-          "ripgrep"
-          "latex"
-        ];
-        providers = {
-          buffer = {
-            score_offset = -7;
-          };
-          lsp = {
-            fallbacks = [ ];
-          };
-          ripgrep = {
-            async = true;
-            module = "blink-ripgrep";
-            name = "Ripgrep";
-            opts = {
-              prefix_min_len = 4;
-              project_root_marker = ".git";
-              fallback_to_regex_highlighting = true;
-              backend = {
-                use = "gitgrep-or-ripgrep";
-                customize_icon_highlight = true;
-                ripgrep = {
-                  context_size = 5;
-                  max_filesize = "1M";
-                  project_root_fallback = true;
-                  search_casing = "--smart-case";
-                };
-              };
-              additional_rg_options = { };
-              ignore_paths = { };
-              additional_paths = { };
-              debug = false;
-            };
-          };
-          latex = {
-            name = "Latex";
-            module = "blink-cmp-latex";
-            opts = {
-              insert_command = helpers.mkRaw ''
-                function(ctx)
-                    local ft = vim.api.nvim_get_option_value("filetype", {
-                        scope = "local",
-                        buf = ctx.bufnr,
-                    })
-                    if ft == "tex" then
-                        return true
-                    end
-                    return false
-                end
-              '';
-            };
-          };
-        };
+      documentation = {
+        auto_show = true;
+        auto_show_delay_ms = 500;
       };
     };
-    blink-compat.enable = true;
-    blink-ripgrep.enable = true;
+    settings.signature = {
+      enabled = true;
+    };
+    settings.keymap = {
+      "<C-space>" = [
+        "show"
+        "show_documentation"
+        "hide_documentation"
+      ];
+      "<C-e>" = [
+        "cancel"
+        "fallback"
+      ];
+      "<Tab>" = [
+        (lib.nixvim.mkRaw ''
+          function(cmp)
+              if cmp.snippet_active() then
+                  return cmp.accept()
+              else
+                  return cmp.select_and_accept()
+              end
+          end
+        '')
+        "snippet_forward"
+        "fallback"
+      ];
+      "<S-Tab>" = [
+        "snippet_backward"
+        "fallback"
+      ];
+      "<Up>" = [
+        "select_prev"
+        "fallback"
+      ];
+      "<Down>" = [
+        "select_next"
+        "fallback"
+      ];
+      "<C-p>" = [
+        "select_prev"
+        "fallback_to_mappings"
+      ];
+      "<C-n>" = [
+        "select_next"
+        "fallback_to_mappings"
+      ];
+      "<C-b>" = [
+        "scroll_documentation_up"
+        "fallback"
+      ];
+      "<C-f>" = [
+        "scroll_documentation_down"
+        "fallback"
+      ];
+      "<C-k>" = [
+        "show_signature"
+        "hide_signature"
+        "fallback"
+      ];
+    };
+    settings.sources = {
+      default = [
+        "lsp"
+        "path"
+        "snippets" # "luasnip"
+        "buffer"
+        "ripgrep"
+        "latex-symbols"
+      ];
+      providers = {
+        buffer = {
+          score_offset = -7;
+        };
+        lsp = {
+          fallbacks = [ ];
+        };
+        ripgrep = {
+          async = true;
+          module = "blink-ripgrep";
+          name = "Ripgrep";
+          opts = {
+            prefix_min_len = 4;
+            project_root_marker = ".git";
+            fallback_to_regex_highlighting = true;
+            backend = {
+              use = "gitgrep-or-ripgrep";
+              customize_icon_highlight = true;
+              ripgrep = {
+                context_size = 5;
+                max_filesize = "1M";
+                project_root_fallback = true;
+                search_casing = "--smart-case";
+              };
+            };
+            additional_rg_options = { };
+            ignore_paths = { };
+            additional_paths = { };
+            debug = false;
+          };
+        };
+        latex-symbols = {
+          module = "blink-cmp-latex";
+          name = "Latex";
+          opts = {
+            # set to true to insert the latex command instead of the symbol
+            insert_command = false;
+          };
+        };
+      }; # providers
+    }; # settings.sources
   };
-
-  extraPlugins = [
-    blink-cmp-latex
-  ];
+  plugins.blink-compat.enable = true;
+  plugins.blink-ripgrep.enable = true;
+  plugins.blink-cmp-latex.enable = true;
 }

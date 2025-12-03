@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, ... }:
 {
   config = {
     # Core plugins
@@ -22,12 +18,7 @@
     dependencies = {
       # coreutils.enable = true;
       # cornelis.enable = true; # agda-mode
-      direnv.enable = true;
       fzf.enable = true;
-      git = {
-        enable = true;
-        package = pkgs.gitMinimal;
-      };
       ripgrep.enable = true;
     };
 
@@ -58,20 +49,43 @@
     };
 
     # Clipboard.
-    clipboard = lib.mkIf pkgs.stdenv.isLinux {
+    clipboard = {
       register = "unnamedplus";
-      providers.wl-copy.enable = true;
+      providers.wl-copy.enable = pkgs.stdenv.isLinux;
+      providers.pbcopy.enable = pkgs.stdenv.isDarwin;
     };
 
     # Filetypes.
     # filetype.extension = {
     #   "slang" = "slang";
     # };
+    extraConfigLua = ''
+      if vim.g.vscode then
+        -- VSCode extension
+        vim.b.completion = false
+      else
+        -- ordinary Neovim
+        vim.b.completion = true
+      end
+    '';
 
     # NOTE: Experimental
     performance.combinePlugins = {
       enable = true;
       standalonePlugins = [ "friendly-snippets" ];
+    };
+    performance.byteCompileLua = {
+      enable = true;
+
+      initLua = false;
+      luaLib = true;
+      nvimRuntime = true;
+      plugins = true;
+
+      # excludedPlugins = [
+      #   "faster.nvim"
+      #   pkgs.vimPlugins.conform-nvim
+      # ];
     };
   };
 }

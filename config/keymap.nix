@@ -1,4 +1,4 @@
-{ helpers, ... }:
+{ lib, ... }:
 {
   # <leader> := SPACE
   globals.mapleader = " ";
@@ -189,7 +189,7 @@
       {
         mode = [ "n" ];
         key = "<leader>bd";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           function()
           	  local bd = require("mini.bufremove").delete
           	  if vim.bo.modified then
@@ -230,7 +230,7 @@
       {
         mode = [ "n" ];
         key = "<leader>/";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           function()
               require("telescope.builtin").live_grep()
           end
@@ -242,7 +242,7 @@
       {
         mode = [ "n" ];
         key = "<leader><space>";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           function()
               require("telescope.builtin").find_files()
           end
@@ -285,7 +285,7 @@
       {
         mode = [ "n" ];
         key = "<leader>hs";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           require("gitsigns").stage_hunk
         '';
         options = {
@@ -295,7 +295,7 @@
       {
         mode = [ "n" ];
         key = "<leader>hr";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           require("gitsigns").reset_hunk
         '';
         options = {
@@ -305,7 +305,7 @@
       {
         mode = [ "v" ];
         key = "<leader>hs";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           function()
             require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
           end
@@ -317,7 +317,7 @@
       {
         mode = [ "v" ];
         key = "<leader>hr";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           function()
             require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
           end
@@ -329,7 +329,7 @@
       {
         mode = [ "n" ];
         key = "<leader>bs";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           require("gitsigns").stage_buffer
         '';
         options = {
@@ -339,7 +339,7 @@
       {
         mode = [ "n" ];
         key = "<leader>hu";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           require("gitsigns").undo_stage_hunk
         '';
         options = {
@@ -349,7 +349,7 @@
       {
         mode = [ "n" ];
         key = "<leader>br";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           require("gitsigns").reset_buffer
         '';
         options = {
@@ -359,7 +359,7 @@
       {
         mode = [ "n" ];
         key = "<leader>hp";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           require("gitsigns").preview_hunk
         '';
         options = {
@@ -369,7 +369,7 @@
       {
         mode = [ "n" ];
         key = "<leader>hb";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           function()
             require("gitsigns").blame_line({ full = true })
           end
@@ -381,7 +381,7 @@
       {
         mode = [ "n" ];
         key = "<leader>tb";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           require("gitsigns").toggle_current_line_blame
         '';
         options = {
@@ -391,7 +391,7 @@
       {
         mode = [ "n" ];
         key = "<leader>hd";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           require("gitsigns").diffthis
         '';
         options = {
@@ -401,7 +401,7 @@
       {
         mode = [ "n" ];
         key = "<leader>hD";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           function()
             require("gitsigns").diffthis("~")
           end
@@ -413,7 +413,7 @@
       {
         mode = [ "n" ];
         key = "<leader>td";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           require("gitsigns").toggle_deleted
         '';
         options = {
@@ -431,7 +431,7 @@
           "o"
         ];
         key = "s";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           function()
             require("flash").jump()
           end
@@ -447,7 +447,7 @@
           "o"
         ];
         key = "S";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           function()
               require("flash").treesitter()
           end
@@ -459,7 +459,7 @@
       {
         mode = [ "o" ];
         key = "r";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           function()
               require("flash").remote()
           end
@@ -474,7 +474,7 @@
           "o"
         ];
         key = "R";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           function()
               require("flash").treesitter_search()
           end
@@ -486,7 +486,7 @@
       {
         mode = [ "c" ];
         key = "<c-s>";
-        action = helpers.mkRaw ''
+        action = lib.nixvim.mkRaw ''
           function()
               require("flash").toggle()
           end
