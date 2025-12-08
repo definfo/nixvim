@@ -59,16 +59,6 @@
     # filetype.extension = {
     #   "slang" = "slang";
     # };
-    extraConfigLua = ''
-      if vim.g.vscode then
-        -- VSCode extension
-        vim.b.completion = false
-      else
-        -- ordinary Neovim
-        vim.b.completion = true
-      end
-    '';
-
     # NOTE: Experimental
     performance.combinePlugins = {
       enable = true;
