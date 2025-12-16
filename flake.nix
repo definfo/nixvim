@@ -49,13 +49,16 @@
           ...
         }:
         let
+          nixvim' = nixvim.legacyPackages.${system};
+
           extraSpecialArgs = {
             inherit system;
-            mylib = import ./lib { inherit (pkgs) lib; };
+            mylib = import ./lib {
+              inherit (pkgs) lib;
+              nixvimLib = nixvim.lib;
+            };
           };
 
-          nixvimLib = nixvim.lib.${system};
-          nixvim' = nixvim.legacyPackages.${system};
           nixvimModule = {
             # You can use `extraSpecialArgs` to pass additional arguments to your module files
             inherit pkgs extraSpecialArgs;
@@ -66,7 +69,7 @@
         {
           checks = {
             # Run `nix flake check .` to verify that your config is not broken
-            default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
+            default = nixvim.lib.${system}.check.mkTestDerivationFromNixvimModule nixvimModule;
           };
 
           # Lets you run `nix run .` to start nixvim

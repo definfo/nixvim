@@ -6,6 +6,7 @@
   plugins.render-markdown = {
     enable = true;
     lazyLoad = mylib.lazyUI;
+    settings.enabled = mylib.noVsc;
   };
   # plugins.markview = {
   #   enable = true;

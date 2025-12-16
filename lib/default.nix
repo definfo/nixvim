@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, nixvimLib }:
 {
   scanPaths =
     path:
@@ -19,4 +19,10 @@
     enable = true;
     settings.event = "DeferredUIEnter";
   };
+
+  noVsc = nixvimLib.nixvim.mkRaw ''
+    function()
+      return not vim.g.vscode
+    end
+  '';
 }

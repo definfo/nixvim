@@ -6,6 +6,7 @@
   };
   # Prefer local LSP
   lsp.servers."*".config.packageFallback = true;
+  lsp.servers."*".config.enabled = mylib.noVsc;
   lsp.servers = {
     asm_lsp.enable = true;
     ast_grep.enable = true;
