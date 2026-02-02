@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -67,6 +68,13 @@
           nixvim-nvim = nixvim'.makeNixvimWithModule nixvimModule;
         in
         {
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = [
+              inputs.neovim-nightly-overlay.overlays.default
+            ];
+          };
+
           checks = {
             # Run `nix flake check .` to verify that your config is not broken
             default = nixvim.lib.${system}.check.mkTestDerivationFromNixvimModule nixvimModule;

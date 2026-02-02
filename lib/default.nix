@@ -1,17 +1,17 @@
 { lib, nixvimLib }:
 {
   scanPaths =
-    path:
-    builtins.map (f: (path + "/${f}")) (
+    _path:
+    map (f: (_path + "/${f}")) (
       builtins.attrNames (
         lib.attrsets.filterAttrs (
-          path: _type:
+          _path': _type:
           (_type == "directory") # include directories
           || (
-            (path != "default.nix") # ignore default.nix
-            && (lib.strings.hasSuffix ".nix" path) # include .nix files
+            (_path' != "default.nix") # ignore default.nix
+            && (lib.strings.hasSuffix ".nix" _path') # include .nix files
           )
-        ) (builtins.readDir path)
+        ) (builtins.readDir _path)
       )
     );
 
