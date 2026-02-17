@@ -1,12 +1,16 @@
-{ mylib, ... }:
+{ lib, mylib, ... }:
 {
   plugins.lspconfig = {
     enable = true;
-    lazyLoad = mylib.lazyUI;
+    lazyLoad = mylib.noVsc;
   };
   # Prefer local LSP
   lsp.servers."*".config.packageFallback = true;
-  lsp.servers."*".config.enabled = mylib.noVsc;
+  lsp.servers."*".config.enabled = lib.nixvim.mkRaw ''
+    function()
+      return not vim.g.vscode
+    end
+  '';
   lsp.servers = {
     asm_lsp.enable = true;
     ast_grep.enable = true;

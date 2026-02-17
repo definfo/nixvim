@@ -1,5 +1,5 @@
 { lib, nixvimLib }:
-{
+rec {
   scanPaths =
     _path:
     map (f: (_path + "/${f}")) (
@@ -20,9 +20,11 @@
     settings.event = "DeferredUIEnter";
   };
 
-  noVsc = nixvimLib.nixvim.mkRaw ''
-    function()
-      return not vim.g.vscode
-    end
-  '';
+  noVsc = lazyUI // {
+    settings.enabled = nixvimLib.nixvim.mkRaw ''
+      function()
+        return not vim.g.vscode
+      end
+    '';
+  };
 }
