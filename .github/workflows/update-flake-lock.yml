@@ -18,7 +18,8 @@ jobs:
           git remote add origin "${GITHUB_EVENT_REPOSITORY_CLONE_URL}"
           git -c credential.helper='!f() { echo username=x-access-token; echo password=${{ github.token }}; }; f' \
               fetch --depth=1 origin "${{ github.sha }}"
-          git checkout FETCH_HEAD
+          git checkout -B "${GITHUB_REF_NAME}" FETCH_HEAD
+          git reset --hard "${{ github.sha }}"
         env:
           GITHUB_EVENT_REPOSITORY_CLONE_URL: ${{ github.event.repository.clone_url }}
       - name: Install Nix
