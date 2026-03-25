@@ -2,4 +2,5 @@ rules:
   unpinned-uses:
     config:
       policies:
+        definfo/checkout-action: ref-pin
         actions/*: ref-pin
