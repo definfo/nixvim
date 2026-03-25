@@ -13,9 +13,14 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
-        with:
-          persist-credentials: false
+        run: |
+          git init repo; cd repo
+          git remote add origin "${GITHUB_EVENT_REPOSITORY_CLONE_URL}"
+          git -c credential.helper='!f() { echo username=x-access-token; echo password=${{ github.token }}; }; f' \
+              fetch --depth=1 origin "${{ github.sha }}"
+          git checkout FETCH_HEAD
+        env:
+          GITHUB_EVENT_REPOSITORY_CLONE_URL: ${{ github.event.repository.clone_url }}
       - name: Install Nix
         uses: nixbuild/nix-quick-install-action@63ca48f939ee3b8d835f4126562537df0fee5b91 # v32
       - name: Update flake.lock
