@@ -1,5 +1,4 @@
 vim.lsp.config("nixd", {
-    cmd = { "nixd" },
     settings = {
         nixd = {
             nixpkgs = {
