@@ -1,8 +1,8 @@
-{ lib, mylib, ... }:
+{ lib, ... }:
 {
   plugins.blink-cmp = {
     enable = true;
-    lazyLoad = mylib.noVsc;
+    # lazyLoad = mylib.noVsc; # FIXME
     settings.enabled = lib.nixvim.mkRaw ''
       function()
         return not vim.tbl_contains({ "lua", "markdown" }, vim.bo.filetype)
