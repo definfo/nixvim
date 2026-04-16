@@ -7,7 +7,8 @@
       function()
         return not vim.tbl_contains({ "lua", "markdown" }, vim.bo.filetype)
           and vim.bo.buftype ~= "prompt"
-          and vim.b.completion ~= false
+          and vim.b.completion
+          and not vim.g.vscode
       end
     '';
     settings.completion = {

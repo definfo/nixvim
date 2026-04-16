@@ -1,10 +1,15 @@
-{ mylib, ... }:
+{ lib, ... }:
 {
   lsp.servers = {
     markdown_oxide.enable = true;
   };
-  plugins.markview = {
+  plugins.markdown-preview = {
     enable = true;
-    lazyLoad = mylib.noVsc;
+    settings.enabled = lib.nixvim.mkRaw ''
+      function()
+        return vim.bo.filetype == "markdown"
+          and not vim.g.vscode
+      end
+    '';
   };
 }
