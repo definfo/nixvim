@@ -12,6 +12,14 @@
       enable = true;
       lazyLoad.enable = true;
       settings.flavour = "auto";
+
+      # This code runs after catppuccin is setup,
+      # regardless of whether it was lazy-loaded or not.
+      luaConfig.post = ''
+        -- At this point catppuccin is configured, so we can safely
+        -- derive bufferline highlights or similar settings from it.
+        require('lz.n').trigger_load("bufferline.nvim")
+      '';
     };
 
     # Deps
